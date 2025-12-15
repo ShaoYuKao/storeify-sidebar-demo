@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Storeify Sidebar Demo</title>
+  <!-- 引入 Boxicons 圖標庫 -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <nav class="sidebar">
+    <header>
+      <div class="image-text">
+        <span class="image">
+          <!-- 使用假圖標代替 Logo -->
+          <i class='bx bxl-stripe'></i>
+        </span>
+
+        <div class="text logo-text">
+          <span class="name">Storeify</span>
+        </div>
+      </div>
+
+      <i class='bx bx-chevron-left toggle'></i>
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+
+        <li class="search-box">
+          <i class='bx bx-search icon'></i>
+          <input type="text" placeholder="Search for anything...">
+        </li>
+
+        <div class="section-title">Main</div>
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-home-alt icon'></i>
+              <span class="text nav-text">Home</span>
+            </a>
+            <span class="tooltip">Home</span>
+          </li>
+
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-box icon'></i>
+              <span class="text nav-text">Orders</span>
+            </a>
+            <span class="tooltip">Orders</span>
+          </li>
+
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-folder icon'></i>
+              <span class="text nav-text">Documentation</span>
+            </a>
+            <span class="tooltip">Documentation</span>
+          </li>
+
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-map-alt icon'></i>
+              <span class="text nav-text">Map Overview</span>
+            </a>
+            <span class="tooltip">Map Overview</span>
+          </li>
+
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-pie-chart-alt-2 icon'></i>
+              <span class="text nav-text">Statistics</span>
+            </a>
+            <span class="tooltip">Statistics</span>
+          </li>
+        </ul>
+
+        <div class="section-title">Communication</div>
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-envelope icon'></i>
+              <span class="text nav-text">Communication</span>
+            </a>
+            <span class="tooltip">Communication</span>
+          </li>
+
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-group icon'></i>
+              <span class="text nav-text">Couriers</span>
+            </a>
+            <span class="tooltip">Couriers</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bottom-content">
+
+        <!-- 容量卡片 (收合時隱藏) -->
+        <div class="capacity-card">
+          <div class="percent">
+            <svg>
+              <circle cx="25" cy="25" r="25"></circle>
+              <circle cx="25" cy="25" r="25"></circle>
+            </svg>
+            <div class="number">
+              <h3>60%</h3>
+            </div>
+          </div>
+          <div class="text-group">
+            <span class="title">Used Capacity</span>
+            <span class="subtitle">You are already using 60% of your capacity.</span>
+          </div>
+          <button>Upgrade plan</button>
+        </div>
+
+        <li class="">
+          <a href="#">
+            <i class='bx bx-cog icon'></i>
+            <span class="text nav-text">Settings</span>
+          </a>
+          <span class="tooltip">Settings</span>
+        </li>
+
+        <li class="">
+          <a href="#">
+            <i class='bx bx-help-circle icon'></i>
+            <span class="text nav-text">Help</span>
+          </a>
+          <span class="tooltip">Help</span>
+        </li>
+
+        <li class="mode profile">
+          <div class="profile-details">
+            <img src="https://i.pravatar.cc/100?img=12" alt="profile">
+            <div class="name-job">
+              <div class="name">Joe Doe</div>
+              <div class="job">joe.doe@atheros.ai</div>
+            </div>
+          </div>
+          <i class='bx bx-log-out' id="log_out"></i>
+        </li>
+      </div>
+    </div>
+  </nav>
+
+  <section class="home">
+    <div class="text">Dashboard Content Here</div>
+  </section>
+
+  <script src="index.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,396 @@
+/* Google Fonts 引入 */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    /* 顏色變量定義，方便日後修改 */
+    --body-color: #D3D9DE; /* 影片右側背景色 */
+    --sidebar-color: #11101D; /* 側邊欄背景深色 */
+    --primary-color: #695CFE; /* 按鈕/Logo 顏色 */
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #FFF;
+    --text-color: #CCC;
+    --text-color-dark: #707070;
+    
+    /* 側邊欄過渡設定 */
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+}
+
+/* === Sidebar 初始化樣式 === */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px; /* 展開寬度 */
+    background: var(--sidebar-color);
+    padding: 10px 14px;
+    transition: var(--tran-05);
+    z-index: 100;
+}
+
+/* === 收合狀態 (.close) 下的樣式覆寫 === */
+.sidebar.close {
+    width: 88px; /* 收合寬度 */
+}
+
+/* === 基本文字與排版 === */
+.sidebar li {
+    height: 50px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.sidebar header .image,
+.sidebar .icon {
+    min-width: 60px;
+    border-radius: 6px;
+}
+
+.sidebar .icon {
+    min-width: 60px;
+    border-radius: 6px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.sidebar .text,
+.sidebar .icon {
+    color: var(--text-color);
+    transition: var(--tran-03);
+}
+
+.sidebar .text {
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 1;
+}
+
+/* 收合時隱藏文字 */
+.sidebar.close .text {
+    opacity: 0;
+}
+.sidebar.close .section-title {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+}
+
+/* === Header (Logo & Toggle) === */
+.sidebar header {
+    position: relative;
+}
+
+.sidebar header .image-text {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar header .logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-text .name {
+    margin-top: 2px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.sidebar header .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar header .image i {
+    font-size: 32px;
+    color: var(--primary-color); /* Logo 紫色 */
+}
+
+.sidebar header .toggle {
+    position: absolute;
+    top: 50%;
+    right: -25px; /* 按鈕突出去 */
+    transform: translateY(-50%) rotate(180deg); /* 預設箭頭向左 */
+    height: 25px;
+    width: 25px;
+    background: var(--primary-color); /* 影片中的深色按鈕背景 */
+    color: var(--sidebar-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+    transition: var(--tran-05);
+}
+
+.sidebar.close .toggle {
+    transform: translateY(-50%) rotate(0deg); /* 收合時箭頭向右 */
+}
+
+/* === Search Box === */
+.sidebar .search-box {
+    background: #1d1b31; /* 深色背景 */
+    border-radius: 6px;
+    transition: var(--tran-05);
+}
+
+.search-box input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    background: #1d1b31;
+    color: var(--text-color);
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 500;
+    transition: var(--tran-05);
+}
+
+/* === Menu Links === */
+.sidebar li a {
+    list-style: none;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: var(--tran-03);
+}
+
+.sidebar li a:hover {
+    background-color: #1d1b31; /* Hover 效果 */
+}
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text {
+    color: var(--toggle-color);
+}
+
+.section-title {
+    font-size: 12px;
+    color: var(--text-color-dark);
+    margin: 15px 0 5px 15px;
+    transition: var(--tran-03);
+}
+
+/* 讓 tooltip 的 absolute 以每個 li 當定位基準（否則會跑去抓到其它祖先元素） */
+.sidebar li{
+    position: relative;
+}
+
+/* === Tooltip 邏輯 (只在收合時出現) === */
+.sidebar .menu-bar .tooltip {
+    position: absolute;
+    left: calc(100% + 15px);
+    top: 50%;
+    transform: translateY(-50%);
+
+    z-index: 3;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 400;
+    opacity: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    color: #11101D;
+
+    transition: opacity 0.2s ease, left 0.2s ease;
+}
+
+.sidebar.close .nav-link:hover .tooltip,
+.sidebar.close .bottom-content li:hover .tooltip {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* === 滾動條樣式 === */
+.menu-bar {
+    height: calc(100% - 55px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    /* 原本：overflow-y: scroll;  會把往右溢出的 tooltip 裁切掉 */
+    overflow: visible;
+}
+
+/* === Capacity Card (容量卡片) === */
+.capacity-card {
+    background: #1d1b31;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 10px 0;
+    transition: var(--tran-05);
+    opacity: 1;
+    overflow: hidden;
+}
+
+.sidebar.close .capacity-card {
+    display: none; /* 收合時完全消失 */
+    opacity: 0;
+}
+
+/* 簡單的 CSS 圓形進度條模擬 */
+.capacity-card svg {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    transform: rotate(-90deg);
+}
+.capacity-card svg circle {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: #11101D;
+    stroke-width: 5;
+    stroke-linecap: round;
+}
+.capacity-card svg circle:last-of-type {
+    stroke-dasharray: 150px;
+    stroke-dashoffset: calc(150px - (150px * 60) / 100); /* 60% */
+    stroke: var(--primary-color); 
+}
+.capacity-card .percent {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.capacity-card .number {
+    position: absolute;
+}
+.capacity-card .number h3 {
+    font-size: 14px;
+    color: #fff;
+}
+.capacity-card .title {
+    display: block;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 10px;
+}
+.capacity-card .subtitle {
+    display: block;
+    color: var(--text-color-dark);
+    font-size: 11px;
+    margin-bottom: 15px;
+}
+.capacity-card button {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    background: var(--primary-color-light);
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* === Profile === */
+.sidebar .profile {
+    display: flex;
+    align-items: center;
+    background: #1d1b31;
+    padding: 10px 14px;
+    border-radius: 6px;
+    transition: var(--tran-05);
+    margin-top: auto; /* 推到底部 */
+}
+
+.sidebar.close .profile {
+    background: none;
+}
+
+.profile .profile-details {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.profile img {
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 10px;
+}
+
+.profile .name, 
+.profile .job {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+.profile .job {
+    font-size: 12px;
+}
+
+.sidebar.close .profile .name,
+.sidebar.close .profile .job {
+    display: none;
+}
+
+.profile #log_out {
+    margin-left: auto; /* 將登出圖標推到最右 */
+    min-width: 50px; 
+    cursor: pointer;
+    background: #1d1b31;
+    border-radius: 12px;
+}
+.sidebar.close .profile #log_out {
+    background: none;
+}
+
+/* === Home Content (右側內容區) === */
+.home {
+    position: absolute;
+    top: 0;
+    top: 0;
+    left: 250px; /* 對應 Sidebar 寬度 */
+    height: 100vh;
+    width: calc(100% - 250px);
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+}
+
+.home .text {
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-color-dark);
+    padding: 12px 60px;
+}
+
+.sidebar.close ~ .home {
+    left: 88px;
+    width: calc(100% - 88px);
+}
