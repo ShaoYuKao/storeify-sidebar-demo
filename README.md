@@ -108,3 +108,5 @@ Sidebar 的狀態只靠一個 class 控制：`nav.sidebar` 有沒有 `.close`
 - Tooltip 只在收合時 hover 才會出現
 - 收合時點 Search box 會展開 Sidebar
 - 收合時容量卡片不出現（display none）
+
+- [邊欄使用 HTML、CSS 和 JavaScript ](https://www.facebook.com/reel/828408723395522)
